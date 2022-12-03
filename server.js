@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message, webhookEvent) {
 		// Create the payload for a basic text message, which
 		// will be added to the body of our request to the Send API
 		response = {
-			text: `Hi, send screenshot of your VS Code to help fix the bug.`,
+			text: `HiThere!!!!, send screenshot of your VS Code to help fix the bug.`,
 		};
 		console.log('IM RESPONDING NORMAL TEXT TO => ', sender_psid);
 		console.log('======================');
