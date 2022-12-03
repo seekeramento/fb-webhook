@@ -79,7 +79,7 @@ function callSendAPI(senderPsid, response) {
 }
 
 // Handle incoming messages
-function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_psid, received_message, webhookEvent) {
 	let response;
 
 	// Checks if the message contains text
@@ -90,6 +90,8 @@ function handleMessage(sender_psid, received_message) {
 			text: `Hi, send screenshot of your VS Code to help fix the bug.`,
 		};
 		console.log('IM RESPONDING NORMAL TEXT TO => ', sender_psid);
+		console.log('Webhook event => ', webhookEvent);
+	
 		// Send the response message
 		callSendAPI(sender_psid, response);
 	} else if (received_message.attachments) {
@@ -165,7 +167,7 @@ app.post('/webhook', (req, res) => {
 			// Check if the event is a message or postback and
 			// pass the event to the appropriate handler function
 			if (webhookEvent.message) {
-				handleMessage(senderPsid, webhookEvent.message);
+				handleMessage(senderPsid, webhookEvent.message, webhookEvent);
 			} else if (webhookEvent.postback) {
 				handlePostback(senderPsid, webhookEvent.postback);
 			}
